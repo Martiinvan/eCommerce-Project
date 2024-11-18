@@ -11251,3 +11251,9 @@ body {
   color: #721c24;
   margin-bottom: 10px;
 }
+
+.cantFont {
+  font-size: 30px;
+  padding: 8px;
+  font-weight: 600;
+}
