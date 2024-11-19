@@ -35,7 +35,7 @@ async function loadProducts() {
                                 <!-- Nombre del producto -->
                                 <h5 class="fw-bolder">${product.name}</h5>
                                 <!-- Precio del producto -->
-                                <p>$${parseFloat(product.price).toFixed(2)}</p>
+                                <p>$${(product.price)}</p>
                             </div>
                         </div>
                         <!-- Botón de acciones -->

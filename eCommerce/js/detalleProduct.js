@@ -14,7 +14,7 @@ fetch('https://673bca8896b8dcd5f3f77b33.mockapi.io/Producto')
 
         if (product) {
             document.getElementById('titleprod').textContent = product.name;
-            document.getElementById('priceprod').textContent = `$${parseFloat(product.price).toFixed(2)}`;
+            document.getElementById('priceprod').textContent = `${(product.price)}`;
             document.getElementById('desprod').textContent = product.descripcion;
             document.getElementById('imgprod').src = product.img;
         } else {
