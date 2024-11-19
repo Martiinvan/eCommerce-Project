@@ -59,3 +59,8 @@ async function loadProducts() {
 
 // Llamar a la función para cargar los productos
 loadProducts();
+
+// Iniciamos el Carrousel
+$('.carousel').carousel({
+    interval: 2000
+  })
