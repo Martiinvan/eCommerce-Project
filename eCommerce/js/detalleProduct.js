@@ -3,7 +3,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('id');
 
-console.log(productId);
+
 
 // Realizar el fetch para obtener los datos de los productos
 fetch('https://673bca8896b8dcd5f3f77b33.mockapi.io/Producto')
@@ -11,7 +11,9 @@ fetch('https://673bca8896b8dcd5f3f77b33.mockapi.io/Producto')
     .then(products => {
         // buscamos el producto por su id
         const product = products.find(p => p.id === productId);
-
+        if(product) {
+            console.log(product);
+        }
         if (product) {
             document.getElementById('titleprod').textContent = product.name;
             document.getElementById('priceprod').textContent = `${(product.price)}`;
