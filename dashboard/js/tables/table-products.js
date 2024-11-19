@@ -211,3 +211,69 @@ function deleteProduct(id, name) {
         }
     });
 }
+
+function agregarProducto() {
+    Swal.fire({
+        title: 'Agregar Nuevo Producto',
+        html: `
+            <input type="text" id="nombre" class="swal2-input" placeholder="Nombre">
+            <input type="number" id="price" class="swal2-input" placeholder="Precio">
+            ${createCategorySelectHtml()}
+            <input type="text" id="img" class="swal2-input" placeholder="URL de Imagen">
+            <textarea id="descripcion" class="swal2-textarea" placeholder="Descripción"></textarea>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Agregar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        preConfirm: () => {
+            const data = {
+                name: document.getElementById('nombre').value,
+                price: document.getElementById('price').value,
+                categoria: document.getElementById('categoria').value,
+                img: document.getElementById('img').value,
+                descripcion: document.getElementById('descripcion').value
+            };
+
+            
+            if (!data.name || !data.price || !data.img || !data.descripcion) {
+                Swal.showValidationMessage('Por favor complete todos los campos requeridos');
+                return false;
+            }
+            return data;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            createProduct(result.value);
+        }
+    });
+}
+
+
+async function createProduct(data) {
+    try {
+        const response = await fetch(PRODUCT_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) throw new Error('Error al agregar el producto');
+
+        Swal.fire({
+            icon: 'success',
+            title: '¡Producto Agregado!',
+            text: 'El producto ha sido agregado correctamente.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+        loadProductData();
+    } catch (error) {
+        console.error('Error:', error);
+        showError('Error al agregar el producto');
+    }
+}
