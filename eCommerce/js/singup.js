@@ -9,6 +9,7 @@ singupForm.addEventListener('submit', function (e) {
     const city = document.getElementById('cityin').value;
     const password = document.getElementById('passwordin').value;
     const phone = document.getElementById('phonein').value;
+    const apellido = document.getElementById('apellidoin').value
 
     // último id registrado en la api
     fetch('https://673b7874339a4ce4451c54ba.mockapi.io/Usuario')
@@ -38,6 +39,7 @@ singupForm.addEventListener('submit', function (e) {
             const newUser = {
                 id: nuevoId,
                 name: name,
+                apellido: apellido,
                 email: email,
                 country: country,
                 city: city,

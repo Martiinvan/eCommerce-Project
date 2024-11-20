@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <li class="dropdown-header text-center">
                 <span>Hola, ${usuarioActual.name}</span>
             </li>
-            <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+            <li><a class="dropdown-item" href="miperfil.html">Mi Perfil</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#" id="cerrarSesion">Cerrar Sesión</a></li>
         `;
