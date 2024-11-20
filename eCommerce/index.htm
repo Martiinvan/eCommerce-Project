@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/filter.css">
 </head>
 
 <body>
@@ -74,10 +75,10 @@
                                 <button type="submit" class="btn btn-danger w-100 mt-3">Ingresar</button>
                             </form>
                             <!-- BOTON PARA REGISTRARSE -->
-                             <div class="text-center">
+                            <div class="text-center">
                                 <p class="mb-2">¿No tienes una cuenta?</p>
                                 <a href="register.html" class="btn btn-outline-danger w-100">Registrarse</a>
-                             </div>
+                            </div>
                         </ul>
                     </div>
                 </div>
@@ -87,7 +88,7 @@
     </div>
     </nav>
     <!-- Header-->
-    <header class="bg-dark py-5">
+    <header class="bg-dark pb-5 mb-5">
             <!-- Carousel-->
             <section class="carousel">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -121,7 +122,7 @@
         </div>
     </header>
     <!-- Section-->
-     <section class="features-icons bg-light text-center justify-content-center align-items-center container-fluid d-flex">
+    <section class="features-icons bg-light text-center justify-content-center align-items-center container-fluid d-flex">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -153,7 +154,56 @@
                 </div>
             </div>
         </div>
-     </section>
+    </section>
+    <section>
+        <!--Filtros-->
+        <div class="card mx-5">
+            <div class="card-body">
+                <form id="filterForm">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="category">Categoría</label>
+                                <select class="form-control" id="category" name="category">
+                                    <option value="mouse">Mouse</option>
+                                    <option value="teclado">Teclados</option>
+                                    <option value="monitor">Monitores</option>
+                                    <option value="micro">Microfonos</option>
+                                    <option value="auriculares">Auriculares</option>
+                                    <option value="almacenamiento">Almacenamiento</option>
+                                    <option value="ram">Memoria Ram</option>
+                                    <option value="placasDeVideo">Placas de video</option>
+                                    <option value="motherboard">Motherboard</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="priceRange">Rango de Precio</label>
+                                <input type="text" class="form-control" id="priceRange" name="priceRange" placeholder="Ej: 100-500">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="availability">Disponibilidad</label>
+                                <select class="form-control" id="availability" name="availability">
+                                    <option value="">Todas</option>
+                                    <option value="disponible">Disponible</option>
+                                    <option value="agotado">Agotado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group mt-4">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                                <button type="reset" class="btn btn-secondary">Resetear</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
     <section class="py-5">
         <div class="container">
             <h2 class="display-5 text-center fw-bolder">Productos</h2>

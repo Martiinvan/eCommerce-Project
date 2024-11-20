@@ -63,4 +63,14 @@ loadProducts();
 // Iniciamos el Carrousel
 $('.carousel').carousel({
     interval: 2000
-  })
+})
+
+// Filtro
+var $grid = $('#product-list').isotope({
+    
+});
+
+$('.filter-button-group').on( 'click', 'button', function() {
+    var filterValue = $(this).attr('data-filter');
+    $grid.isotope({ filter: filterValue });
+});
