@@ -24,3 +24,25 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+function logout() {
+    sessionStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('usuarioActual');
+    window.location.href = 'login.html';
+}
+
+const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
+
+const nombre = usuarioActual.name; 
+const apellido = usuarioActual.apellido;
+const avatar = usuarioActual.avatar;
+
+const loginname = document.getElementById('loginname');
+
+loginname.innerHTML = `
+        <div class="small">Iniciaste sesión como:</div>
+    <div class="d-flex align-items-center">
+        <img src="${avatar}" alt="Avatar" class="avatar-img me-2" />
+        <span>${nombre} ${apellido}</span>
+    </div>`
+    ;
+    

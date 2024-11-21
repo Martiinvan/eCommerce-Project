@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 data: null,
                 render: function(data, type, row) {
                     return `
-                        <button class="btn btn-sm btn-primary" onclick="editarUsuario(${row.id}, '${row.name}', '${row.surname}', '${row.email}', '${row.phone}', '${row.avatar}', '${row.city}', '${row.country}', '${row.role}')">
+                        <button class="btn btn-sm btn-primary" onclick="editarUsuario(${row.id}, '${row.name}', '${row.apellido}', '${row.email}', '${row.phone}', '${row.avatar}', '${row.city}', '${row.country}', '${row.role}')">
                             <i class="fas fa-edit"></i> Editar
                         </button>
                         <button class="btn btn-sm btn-danger" onclick="eliminarUsuario(${row.id}, '${row.name}')">
@@ -189,7 +189,7 @@ async function actualizarUsuario(id, nombre, apellido, email, telefono, avatar, 
             },
             body: JSON.stringify({
                 name: nombre,
-                surname: apellido,
+                apellido: apellido,
                 email: email,
                 phone: telefono,
                 avatar: avatar,

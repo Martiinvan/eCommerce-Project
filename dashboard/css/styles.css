@@ -11257,3 +11257,9 @@ body {
   padding: 8px;
   font-weight: 600;
 }
+
+.avatar-img {
+  width: 40px;  /* Ajusta el tamaño según sea necesario */
+  height: 40px; /* Mantén la proporción si es una imagen cuadrada */
+  border-radius: 50%;  /* Hace que la imagen sea redonda */
+}
