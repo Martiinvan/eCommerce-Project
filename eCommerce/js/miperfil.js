@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Construcción dinámica del perfil
     miperfilin.innerHTML = `
-        <div class="col-lg-4">
+        <div class="col-lg-4 card" style="width: 36%;">
             <div class="card mb-4">
                 <div class="card-body text-center">
                     <img src="${usuarioActual.avatar || 'path/to/default-avatar.png'}"
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="mb-0">Nombre Completo</p>
+                            <p class="mb-0">Nombre</p>
                         </div>
                         <div class="col-sm-9">
                             <p class="text-muted mb-0">${usuarioActual.name}, ${usuarioActual.apellido} </p>

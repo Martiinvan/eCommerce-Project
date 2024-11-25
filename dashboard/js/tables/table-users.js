@@ -220,7 +220,6 @@ async function actualizarUsuario(id, nombre, apellido, email, telefono, avatar, 
 
 function agregaruser() {
     const rol = 'Administrador'; // reemplaza con el valor real
-    const avatar = 'https://example.com/avatar.jpg'; // reemplaza con el valor real
 
     const html = `
         <input type="text" id="nombre" class="swal2-input" placeholder="Nombre">
@@ -242,7 +241,7 @@ function agregaruser() {
         <!-- Campo para subir imagen -->
         <input type="file" id="avatar" class="swal2-input" placeholder="Avatar">
         <div id="avatarPreview" style="margin-top: 10px;">
-            <img src="${avatar}" alt="Avatar" width="50" height="50" class="img-circle">
+            <img id="avatarImg" alt="Avatar" width="50" height="50" class="img-circle">
         </div>
     `;
 
@@ -276,6 +275,12 @@ function agregaruser() {
         if (result.isConfirmed) {
             createuser(result.value);
         }
+    });
+
+    // Agrega un evento para mostrar la imagen seleccionada
+    document.getElementById('avatar').addEventListener('change', function() {
+        const img = document.getElementById('avatarImg');
+        img.src = URL.createObjectURL(this.files[0]);
     });
 }
 
