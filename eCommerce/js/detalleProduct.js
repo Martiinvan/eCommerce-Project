@@ -40,6 +40,8 @@ function agregarcarrito() {
         nombreComprador: usuarioActual.name + ' ' + usuarioActual.apellido,
         emailComprador: usuarioActual.email,
         name: document.getElementById('titleprod').textContent,
+        price: document.getElementById('priceprod').textContent.replace('$', ''),
+        img: document.getElementById('imgprod').src,
         quantity: 1,
         fecha: new Date(),
     }
@@ -53,7 +55,7 @@ function agregarcarrito() {
     });
     const carritoCount = document.getElementById('carrito-count');
     carritoCount.textContent = carrito.length;
-
+    mostrarCarrito();
 
 }
 
@@ -69,52 +71,3 @@ botonCarrito.addEventListener('click', (e) => {
         confirmButtonText: 'Aceptar'
     });
 });
-
-const botonComprar = document.getElementById('')
-
-// Creamos contenido dependiendo cuantos items haya en el carrito
-// Pasamos los datos de la compra a una api
-const confirmarCompra = document.getElementById('confirmarCompra');
-confirmarCompra.addEventListener('click', (e) => {
-    e.preventDefault();
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    const nuevaVenta = {
-        id: carrito.length + 1,
-        idUsuario: usuarioActual.id,
-        comprador: usuarioActual.name + ' ' + usuarioActual.apellido,
-        emailUsuario: usuarioActual.email,
-        fecha: new Date(),
-        despachado: 'Sin despachar',
-        productos: carrito.map(producto => {
-            return {
-                id: producto.id,
-                name: producto.name,
-                quantity: producto.quantity,
-                price: producto.price,
-            };
-
-        }),
-    };
-
-    fetch('https://6742ade3b7464b1c2a626fd7.mockapi.io/Venta', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(nuevaVenta),
-    })
-        .then(response => response.json())
-        .then(venta => {
-            console.log('Venta creada:', venta);
-            localStorage.removeItem('carrito');
-            Swal.fire({
-                icon: 'success',
-                title: 'Compra realizada',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        })
-        .catch(error => {
-            console.error('Error al crear la venta:', error);
-        });
-})
