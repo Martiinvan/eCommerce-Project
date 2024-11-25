@@ -44,11 +44,38 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <button class="btn btn-outline-danger" type="submit">
-                        <i class="bi-cart-fill text-danger me-1"></i>
-                        Carrito
-                        <span class="badge bg-danger text-white ms-1 rounded-pill">0</span>
-                    </button>
+                    <!-- BOTON CARRITO -->
+                    <div class=" d-flex justify-content-center align-items-center">
+                        <div class="dropdown">
+                            <!-- Botón para mostrar el dropdown -->
+                            <button class="btn btn-danger dropdown-toggle" type="button" id="dropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-cart-fill me-2"> <span id="carrito-count">0</span></i></button>
+                            <!-- Contenido del dropdown -->
+                            <ul class="dropdown-menu dropdown-menu-end p-4" style="width: 300px;"
+                                aria-labelledby="dropdown">
+                                <li class="dropdown-header text-center">
+                                    <h3 class=" fw-bold">Carrito</h3>
+                                </li>
+
+                                <li class="dropdown-header text-center">
+                                    <!-- LISTA DE PRODUCTOS con img a la izquierda -->
+                                     <div class="d-flex justify-content-center align-items-center" id="prodCarrito">
+                                        <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_38614_Procesador_Intel_Core_i7_14700K_5.6GHz_Turbo_Socket_1700_Raptor_Lake_a742dfca-grn.jpg" class="img-thumbnail" style="width: 30%;" alt="">
+                                        <div class="ms-3">
+                                            <p class="fw-bold">Producto</p>
+                                            <p class="text-muted">Descripcion</p>
+                                            <p class="fw-bold">Precio</p>
+                                     </div>
+
+                                    
+                                </li>
+                                <li class="dropdown-header text-center">
+                                    <button class="btn btn-danger" id="confirmarCompra">Confirmar Compran </button>
+                                </li>
+                            </ul>
+                            <!-- FIN DEL CONTENIDO DEL DROPWDON -->
+                        </div>
                     <div class=" d-flex justify-content-center align-items-center">
                         <div class="dropdown">
                             <!-- Botón para mostrar el dropdown -->
@@ -86,31 +113,18 @@
                     </div>
                     <p class="lead" id="desprod"></p>
                     <form class="d-flex">
-                        <button class="btn btn-outline-danger" type="submit">
+                        <button class="btn btn-outline-danger" id="addcart" type="submit">
                             <i class="bi-cart-fill text-danger me-1"></i>
-                            Carrito
-                            <span class="badge bg-danger text-white ms-1 rounded-pill">0</span>
+                            Agregar al Carrito
+                            <span class="badge bg-danger text-white ms-1 rounded-pill"></span>
                         </button>
-                        <!-- Dentro de tu <nav> (parte de la barra de navegación) -->
-                        <div class="d-flex justify-content-center align-items-center">
-                            <div class="dropdown">
-                                <!-- Botón para mostrar el dropdown -->
-                                <button class="btn btn-danger dropdown-toggle" type="button" id="dropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-person me-2"></i>
-                                </button>
-                                <!-- Contenido del dropdown (se actualizará dinámicamente con JS) -->
-                                <ul class="dropdown-menu dropdown-menu-end p-4" style="width: 300px;"
-                                    aria-labelledby="dropdown" id="user-dropdown">
-                                    <!-- Este contenido se cambiará dinámicamente con JS -->
-                                </ul>
-                            </div>
-                        </div>
-
-                    </form>
-
                 </div>
             </div>
+
+            </form>
+
+        </div>
+        </div>
         </div>
         </div>
     </section>
