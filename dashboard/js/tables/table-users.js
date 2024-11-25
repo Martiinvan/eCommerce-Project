@@ -1,3 +1,4 @@
+const USERS_API_URL = 'https://673b7874339a4ce4451c54ba.mockapi.io/Usuario';
 document.addEventListener('DOMContentLoaded', function() {
     let table = $('#usuariosTable').DataTable({
         language: {
@@ -217,4 +218,91 @@ async function actualizarUsuario(id, nombre, apellido, email, telefono, avatar, 
     }
 }
 
+function agregaruser() {
+    const rol = 'Administrador'; // reemplaza con el valor real
+    const avatar = 'https://example.com/avatar.jpg'; // reemplaza con el valor real
 
+    const html = `
+        <input type="text" id="nombre" class="swal2-input" placeholder="Nombre">
+        <input type="text" id="apellido" class="swal2-input" placeholder="Apellido">
+        <input type="email" id="email" class="swal2-input" placeholder="Email">
+        <input type="tel" id="telefono" class="swal2-input" placeholder="Teléfono">
+        <input type="text" id="ciudad" class="swal2-input" placeholder="Ciudad">
+        <input type="text" id="pais" class="swal2-input" placeholder="País">
+        
+        <!-- Campo para elegir rol -->
+        <div class="swal2-input">
+            <label for="rol">Rol</label>
+            <select id="rol" class="swal2-input">
+                <option value="Administrador" ${rol === 'Administrador' ? 'selected' : ''}>Administrador</option>
+                <option value="Cliente" ${rol === 'Cliente' ? 'selected' : ''}>Cliente</option>
+            </select>
+        </div>
+        
+        <!-- Campo para subir imagen -->
+        <input type="file" id="avatar" class="swal2-input" placeholder="Avatar">
+        <div id="avatarPreview" style="margin-top: 10px;">
+            <img src="${avatar}" alt="Avatar" width="50" height="50" class="img-circle">
+        </div>
+    `;
+
+    Swal.fire({
+        title: 'Agregar Nuevo Usuario',
+        html: html,
+        showCancelButton: true,
+        confirmButtonText: 'Agregar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        preConfirm: () => {
+            const data = {
+                name: document.getElementById('nombre').value,
+                apellido: document.getElementById('apellido').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('telefono').value,
+                avatar: document.getElementById('avatar').files[0],
+                city: document.getElementById('ciudad').value,
+                country: document.getElementById('pais').value,
+                role: document.getElementById('rol').value
+            };
+            
+            if (!data.name || !data.apellido || !data.email || !data.phone || !data.avatar || !data.city || !data.country || !data.role) {
+                Swal.showValidationMessage('Por favor complete todos los campos requeridos');
+                return false;
+            }
+            return data;
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            createuser(result.value);
+        }
+    });
+}
+
+
+async function createuser(data) {
+    try {
+        const response = await fetch(USERS_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) throw new Error('Error al agregar al Usuario');
+
+        Swal.fire({
+            icon: 'success',
+            title: '¡Usuario Agregado!',
+            text: 'El usuario ha sido agregado correctamente.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+        loadProductData();
+    } catch (error) {
+        console.error('Error:', error);
+        showError('Error al agregar el usuario');
+    }
+}
