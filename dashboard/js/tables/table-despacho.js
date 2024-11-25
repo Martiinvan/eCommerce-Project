@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 data: null,
                 render: function(data, type, row) {
                     return `
-                        <button class="btn btn-sm btn-primary" onclick="editarDespacho(${row.id}, '${row.idusuario}', '${row.emailusuario}', '${row.idproducto}', '${row.nombreproducto}', '${row.cantidad}', '${row.fecha}', '${rowdespachado}')">
+                        <button class="btn btn-sm btn-primary" onclick="editarDespacho(${row.id}, '${row.idusuario}', '${row.emailusuario}', '${row.idproducto}', '${row.nombreproducto}', '${row.cantidad}', '${row.fecha}', '${row.despachado}')">
+
                             <i class="fas fa-edit"></i> Editar
                         </button>
                         <button class="btn btn-sm btn-danger" onclick="eliminarDespacho(${row.id}, '${row.name}')">
@@ -90,28 +91,28 @@ function editarDespacho(id, idusuario, emailusuario, idproducto, nombreproducto,
             const idusuario = document.getElementById('idusuario').value;
             const emailusuario = document.getElementById('emailusuario').value;
             const idproducto = document.getElementById('idproducto').value;
-            const nonbreproducto = document.getElementById('nonbreproducto').value;
+            const nombreproducto = document.getElementById('nombreproducto').value;
             const cantidad = document.getElementById('cantidad').value;
             const fecha = document.getElementById('fecha').value;
             const despachado = document.getElementById('despachado').value;
 
-            if (!idusuario || !emailusuario || !idproducto || !nonbreproducto || !cantidad || !fecha || !despachado) {
+            if (!idusuario || !emailusuario || !idproducto || !nombreproducto || !cantidad || !fecha || !despachado) {
                 Swal.showValidationMessage('Por favor llena todos los campos');
                 return false;
             }
 
 
-            return { idusuario, emailusuario, idproducto, nonbreproducto, cantidad, fecha, despachado};
+            return { idusuario, emailusuario, idproducto, nombreproducto, cantidad, fecha, despachado};
         }
     }).then((result) => {
         if (result.isConfirmed) {
             // Llamamos a la función para actualizar el usuario con los datos obtenidos
-            actualizardespacho(id, result.value.idusuario, result.value.emailusuario, result.value.idproducto, result.value.nonbreproducto, result.value.cantidad, result.value.fecha, result.value.despachado);
+            actualizardespacho(id, result.value.idusuario, result.value.emailusuario, result.value.idproducto, result.value.nombreproducto, result.value.cantidad, result.value.fecha, result.value.despachado);
         }
     });
 }
 
-async function actualizardespacho(id, idusuario, emailusuario,idproducto,nonbreproducto,cantidad,fecha,despachado) {
+async function actualizardespacho(id, idusuario, emailusuario,idproducto,nombreproducto,cantidad,fecha,despachado) {
     try {
         const response = await fetch(`https://6742ade3b7464b1c2a626fd7.mockapi.io/Venta/${id}`, {
             method: 'PUT',
@@ -122,7 +123,7 @@ async function actualizardespacho(id, idusuario, emailusuario,idproducto,nonbrep
                 idusuario: idusuario,
                 emailusuario: emailusuario,
                 idproducto:idproducto ,
-                nonbreproducto :nonbreproducto ,
+                nombreproducto :nombreproducto ,
                 cantidad: cantidad,
                 fecha:fecha,
                 despachado:despachado   
@@ -134,24 +135,24 @@ async function actualizardespacho(id, idusuario, emailusuario,idproducto,nonbrep
         Swal.fire({
             icon: 'success',
             title: '¡Actualizado!',
-            text: 'Usuario actualizado correctamente',
+            text: 'Venta actualizado correctamente',
             showConfirmButton: false,
             timer: 1500
         });
 
-        cargarDatos($('#usuariosTable').DataTable()); 
+        cargarDatos($('#despachoTable').DataTable()); 
 
     } catch (error) {
         console.error('Error:', error);
-        mostrarError('Error al actualizar el usuario');
+        mostrarError('Error al actualizar la venta');
     }
 }
 
 // Función para eliminar usuario
-function eliminarDespacho(id, idusuario) {
+function eliminarDespacho(id) {
     Swal.fire({
         title: '¿Estás seguro?',
-        text: `¿Deseas eliminar al usuario ${idusuario}?`,
+        text: `¿Deseas eliminar esta Venta ${id}?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -172,7 +173,7 @@ function eliminarDespacho(id, idusuario) {
                 Swal.fire({
                     icon: 'success',
                     title: '¡Eliminado!',
-                    text: 'El usuario ha sido eliminado correctamente.',
+                    text: 'La venta ha sido eliminado correctamente.',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -181,7 +182,7 @@ function eliminarDespacho(id, idusuario) {
             })
             .catch(error => {
                 console.error('Error:', error);
-                mostrarError('Error al eliminar el usuario');
+                mostrarError('Error al eliminar la venta');
             });
         }
     });
